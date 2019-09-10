@@ -17,21 +17,54 @@
     <div class="container">
         <!-- First row will display GIF tags-->
         <div class="row one">
-
+            <!-- Jumbotron for title and tags -->
+            <div class="col-12">
+                <div class="jumbotron jumbotron-fluid bg-dark text-white text-center">
+                    <div class="container">
+                        <h1 class="display-4">GIPHY API</h1>
+                        <!-- Tags will be appended to lead class -->
+                        <p class="lead"></p>
+                    </div>
+                </div>
+            </div>
         </div>
         <!-- Second row will display Searchbar and GIF results -->
         <div class="row two">
             <!--Column for Searchbar-->
-            <div class="col-4" id="searchBar">
-
+            <div class="col-5" id="searchBar">
+                <!-- Searchbar form with text input bar and submit button-->
+                <form>
+                    <div class="form-group">
+                        <label for="exampleInput">GIFS</label>
+                        <input type="text" class="form-control" id="search"
+                            placeholder="Harry Potter, Matrix, etc">
+                        <small id="Help" class="form-text text-muted">Click button to add more GIF tags</small>
+                    </div>
+                </form>
+                <button class="btn btn-primary" id="add">ADD GIF!!</button>
             </div>
             <!--Column for GIFS-->
-            <div class="col-8" id="gifs">
-
-
+            <div class="col-7">
+                <!-- GIFS are displayed inside a jumbotron-->
+                <div class="jumbotron" id="gifs">
+                    <img src="https://media2.giphy.com/media/322FvxfciE8UsYvILG/giphy.webp" height="250px" width="100%">
+                </div>
             </div>
         </div>
     </div>
+    <!-- Bootstrap and our Javascript links-->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="assets/js/App.js"></script>
+
 </body>
 
 </html>
