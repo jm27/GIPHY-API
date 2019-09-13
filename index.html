@@ -5,9 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <!-- Link to Bootstrap API  -->
+    <!-- Link to Bootstrap API & our CSS file -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/style.css">
     <!-- Title -->
     <title>GIFFY Search</title>
 </head>
@@ -23,7 +24,7 @@
                     <div class="container">
                         <h1 class="display-4">GIPHY API</h1>
                         <!-- Tags will be appended to lead class -->
-                        <p class="lead"></p>
+                        <div id="tagsDiv"></div>
                     </div>
                 </div>
             </div>
@@ -31,22 +32,23 @@
         <!-- Second row will display Searchbar and GIF results -->
         <div class="row two">
             <!--Column for Searchbar-->
-            <div class="col-5" id="searchBar">
+            <div class="col-3" id="searchBar">
                 <!-- Searchbar form with text input bar and submit button-->
                 <form>
                     <div class="form-group">
-                        <label for="exampleInput">GIFS</label>
-                        <input type="text" class="form-control" id="search"
-                            placeholder="Harry Potter, Matrix, etc">
-                        <small id="Help" class="form-text text-muted">Click button to add more GIF tags</small>
-                    </div>
+                        <label for="GIF-Input">GIFS ROCK!</label>
+                        <input type="text" id="search" placeholder="Harry Potter, Matrix, etc">
+                        <small id="Help" class="form-text text-muted">Type in & Click button to add more GIF
+                            tags</small>
+                        </div>
                 </form>
-                <button class="btn btn-primary" id="add">ADD GIF!!</button>
+                <button type="button" id="add" class="btn btn-outline-primary">ADD GIF!!</button>    
+                <button type="button" id="clear" class="btn btn-outline-danger">Clear</button>
             </div>
             <!--Column for GIFS-->
-            <div class="col-7">
+            <div class="col-9">
                 <!-- GIFS are displayed inside a jumbotron-->
-                <div class="jumbotron" id="gifs">
+                <div class="jumbotron bg-danger text-white text-center" id="gifs">
                     <img src="https://media2.giphy.com/media/322FvxfciE8UsYvILG/giphy.webp" height="250px" width="100%">
                 </div>
             </div>
@@ -62,7 +64,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="assets/js/App.js"></script>
 
 </body>

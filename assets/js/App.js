@@ -1,26 +1,31 @@
 // Array containing the first set of tags
-const topics = ["pulp_fiction", "kill_bill", "snatch"];
+const topics = ["pulp fiction", "kill bill", "snatch"];
 
 // On load run click function
 // window.onload = function(){
-
+// this.renderButtons()
 // };
+// Function for displaying movie data
+function renderButtons() {
+
+    // Deleting the movies prior to adding new movies
+    // (this is necessary otherwise we will have repeat buttons)
+    $("#tagsDiv").empty();
 
 
-
-// for loop to create a new tag for each element inside the topic array
-for (let i = 0; i < topics.length; i++) {
-    //New button for each tag
-    let tag = $("<button>");
-    // Write each element from array inside button
-    tag.html(topics[i]);
-    // Append tags to lead class
-    $(".lead").append(tag);
-    //give each tad id= tag
-    tag.addClass("tag");
-    tag.attr("data-tag", topics[i])
-};
-
+    // for loop to create a new tag for each element inside the topic array
+    for (let i = 0; i < topics.length; i++) {
+        //New button for each tag
+        let tag = $("<button>");
+        // Write each element from array inside button
+        tag.html(topics[i]);
+        // Append tags to lead class
+        $("#tagsDiv").append(tag);
+        //give each tad id= tag
+        tag.addClass("tag");
+        tag.attr("data-tag", topics[i])
+    };
+    
 // Tags event listener
 $(".tag").on("click", function () {
     let gifName = $(this).attr("data-tag");
@@ -28,21 +33,21 @@ $(".tag").on("click", function () {
     //API URL to get GIFS
     const giphyURL = "https://api.giphy.com/v1/gifs/search?q=" +
         gifName + "&api_key=MhFbYclkyHkjesSDKdoZEcRv0Sb9oNkn&limit=10";
-        console.log(giphyURL);         
+    console.log(giphyURL);
     //AJAX request
     $.ajax({
         url: giphyURL,
         method: "GET"
     })
-    
-    .then(function (response) {
-        $("#gifs").empty("");
+
+        .then(function (response) {
+            $("#gifs").empty("");
             console.log(giphyURL);
 
             console.log(response);
             // Variable to store AJAX request
-    let results = response.data;
-    for (let i = 0; i < results.length; i++) {
+            let results = response.data;
+            for (let i = 0; i < results.length; i++) {
                 // Creating and storing a div tag
                 var animalDiv = $("<div>");
 
@@ -61,11 +66,35 @@ $(".tag").on("click", function () {
                 // Prependng the animalDiv to the HTML page in the "#gifs-appear-here" div
                 $("#gifs").append(animalDiv);
 
-                            };
+            };
 
-                         });
+        });
 
-                    });
+});
+
+}
+// This function handles events where one button is clicked
+$("#add").on("click", function (event) {
+    // Preventing the buttons default behavior when clicked (which is submitting a form)
+    event.preventDefault();
+    // This line grabs the input from the textbox
+    let newTag = $("#search").val().trim();
+    console.log(newTag);
+    // Adding the movie from the textbox to our array
+    topics.push(newTag);
+
+    // Calling renderButtons which handles the processing of our movie array
+    renderButtons();
+
+});
+//$("#clear").on("click", function()){
+//    $("#tagsDiv").empty();
+//}
+
+
+
+// Calling the renderButtons function to display the intial buttons
+renderButtons();
 
 
 
