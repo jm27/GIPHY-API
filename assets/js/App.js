@@ -49,22 +49,22 @@ $(".tag").on("click", function () {
             let results = response.data;
             for (let i = 0; i < results.length; i++) {
                 // Creating and storing a div tag
-                var animalDiv = $("<div>");
+                var gifDiv = $("<div>");
 
                 // Creating a paragraph tag with the result item's rating
                 var p = $("<p>").text("Rating: " + results[i].rating);
 
                 // Creating and storing an image tag
-                var animalImage = $("<img>");
+                var gifImage = $("<img>");
                 // Setting the src attribute of the image to a property pulled off the result item
-                animalImage.attr("src", results[i].images.fixed_height.url);
+                gifImage.attr("src", results[i].images.fixed_height.url);
 
                 // Appending the paragraph and image tag to the animalDiv
-                animalDiv.append(p);
-                animalDiv.append(animalImage);
+                gifDiv.append(p);
+                gifDiv.append(gifImage);
 
                 // Prependng the animalDiv to the HTML page in the "#gifs-appear-here" div
-                $("#gifs").append(animalDiv);
+                $("#gifs").append(gifDiv);
 
             };
 
@@ -80,21 +80,27 @@ $("#add").on("click", function (event) {
     // This line grabs the input from the textbox
     let newTag = $("#search").val().trim();
     console.log(newTag);
-    // Adding the movie from the textbox to our array
+    // Adding tag from the textbox to our array
     topics.push(newTag);
 
-    // Calling renderButtons which handles the processing of our movie array
+    // Calling renderButtons
     renderButtons();
 
 });
-//$("#clear").on("click", function()){
-//    $("#tagsDiv").empty();
-//}
+
+
+
+const clearFunction = $("#clear").on("click", function(){
+  $("#tagsDiv").empty();
+  renderButtons();
+  console.log("ive been clicked!")
+});
 
 
 
 // Calling the renderButtons function to display the intial buttons
 renderButtons();
+clearFunction;
 
 
 
