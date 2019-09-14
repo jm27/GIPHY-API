@@ -3,7 +3,8 @@ const topics = ["pulp fiction", "kill bill", "snatch"];
 
 // On load run click function
 // window.onload = function(){
-// this.renderButtons()
+//     renderButtons();
+//     clearFunction;
 // };
 // Function for displaying movie data
 function renderButtons() {
@@ -92,7 +93,7 @@ $("#add").on("click", function (event) {
 
 const clearFunction = $("#clear").on("click", function(){
   $("#tagsDiv").empty();
-  renderButtons();
+ 
   console.log("ive been clicked!")
 });
 
