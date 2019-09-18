@@ -26,73 +26,74 @@ function renderButtons() {
         tag.addClass("tag");
         tag.attr("data-tag", topics[i])
     };
-    
-// Tags event listener
-$(".tag").on("click", function () {
-    let gifName = $(this).attr("data-tag");
-    console.log("Ive been clicked!!!!")
-    //API URL to get GIFS
-    const giphyURL = "https://api.giphy.com/v1/gifs/search?q=" +
-        gifName + "&api_key=MhFbYclkyHkjesSDKdoZEcRv0Sb9oNkn&limit=10";
-    console.log(giphyURL);
-    //AJAX request
-    $.ajax({
-        url: giphyURL,
-        method: "GET"
-    })
 
-        .then(function (response) {
-            $("#gifs").empty("");
-            console.log(giphyURL);
+    // Tags event listener
+    $(".tag").on("click", function () {
+        let gifName = $(this).attr("data-tag");
+        console.log("Ive been clicked!!!!")
+        //API URL to get GIFS
+        const giphyURL = "https://api.giphy.com/v1/gifs/search?q=" +
+            gifName + "&api_key=MhFbYclkyHkjesSDKdoZEcRv0Sb9oNkn&limit=10";
+        console.log(giphyURL);
+        //AJAX request
+        $.ajax({
+            url: giphyURL,
+            method: "GET"
+        })
 
-            console.log(response);
-            // Variable to store AJAX request
-            let results = response.data;
-            for (let i = 0; i < results.length; i++) {
-                // Creating and storing a div tag
-                var gifDiv = $("<div>");
+            .then(function (response) {
+                $("#gifs").empty("");
+                console.log(giphyURL);
 
-                // Creating a paragraph tag with the result item's rating
-                var p = $("<p>").text("Rating: " + results[i].rating);
+                console.log(response);
+                // Variable to store AJAX request
+                let results = response.data;
+                for (let i = 0; i < results.length; i++) {
+                    // Creating and storing a div tag
+                    var gifDiv = $("<div>");
 
-                // Creating and storing an image tag
-                var gifImage = $("<img>");
-                // Setting the src attribute of the image to a property pulled off the result item
-                gifImage.attr("src", results[i].images.fixed_height_still.url);
-                gifImage.attr("data-animate", results[i].images.fixed_height.url);
-                gifImage.attr("data-still", results[i].images.fixed_height_still.url);
-                gifImage.attr("data-state", "still");
-                gifImage.addClass("gif")
-                // Appending the paragraph and image tag to the animalDiv
-                gifDiv.append(p);
-                gifDiv.append(gifImage);
+                    // Creating a paragraph tag with the result item's rating
+                    var p = $("<p>").text("Rating: " + results[i].rating);
 
-                // Prependng the animalDiv to the HTML page in the "#gifs-appear-here" div
-                $("#gifs").append(gifDiv);
+                    // Creating and storing an image tag
+                    var gifImage = $("<img>");
+                    // Setting the src attribute of the image to a property pulled off the result item
+                    gifImage.attr("src", results[i].images.fixed_height_still.url);
+                    gifImage.attr("data-animate", results[i].images.fixed_height.url);
+                    gifImage.attr("data-still", results[i].images.fixed_height_still.url);
+                    gifImage.attr("data-state", "still");
+                    gifImage.addClass("gif")
+                    // Appending the paragraph and image tag to the animalDiv
+                    gifDiv.append(p);
+                    gifDiv.append(gifImage);
 
-            };
-            $(".gif").on("click", function() {
-                // The attr jQuery method allows us to get or set the value of any attribute on our HTML element
-                var state = $(this).attr("data-state");
-                // If the clicked image's state is still, update its src attribute to what its data-animate value is.
-                // Then, set the image's data-state to animate
-                // Else set src to the data-still value
-                if (state === "still") {
-                  $(this).attr("src", $(this).attr("data-animate"));
-                  $(this).attr("data-state", "animate");
-                } else {
-                  $(this).attr("src", $(this).attr("data-still"));
-                  $(this).attr("data-state", "still");
-                }
-              });
+                    // Prependng the animalDiv to the HTML page in the "#gifs-appear-here" div
+                    $("#gifs").append(gifDiv);
 
-        });
+                };
+                $(".gif").on("click", function () {
+                    // The attr jQuery method allows us to get or set the value of any attribute on our HTML element
+                    var state = $(this).attr("data-state");
+                    // If the clicked image's state is still, update its src attribute to what its data-animate value is.
+                    // Then, set the image's data-state to animate
+                    // Else set src to the data-still value
+                    if (state === "still") {
+                        $(this).attr("src", $(this).attr("data-animate"));
+                        $(this).attr("data-state", "animate");
+                    } else {
+                        $(this).attr("src", $(this).attr("data-still"));
+                        $(this).attr("data-state", "still");
+                    }
+                });
 
-});
+            });
+
+    });
 
 }
 // This function handles events where one button is clicked
 $("#add").on("click", function (event) {
+    $("#tagsDiv").empty();
     // Preventing the buttons default behavior when clicked (which is submitting a form)
     event.preventDefault();
     // This line grabs the input from the textbox
@@ -109,10 +110,11 @@ $("#add").on("click", function (event) {
 
 
 
-const clearFunction = $("#clear").on("click", function(){
-  $("#tagsDiv").empty();
- 
-  console.log("ive been clicked!")
+const clearFunction = $("#clear").on("click", function () {
+    renderButtons();
+    topics.pop();
+
+    console.log("ive been clicked!")
 });
 
 
