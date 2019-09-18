@@ -58,8 +58,11 @@ $(".tag").on("click", function () {
                 // Creating and storing an image tag
                 var gifImage = $("<img>");
                 // Setting the src attribute of the image to a property pulled off the result item
-                gifImage.attr("src", results[i].images.fixed_height.url);
-
+                gifImage.attr("src", results[i].images.fixed_height_still.url);
+                gifImage.attr("data-animate", results[i].images.fixed_height.url);
+                gifImage.attr("data-still", results[i].images.fixed_height_still.url);
+                gifImage.attr("data-state", "still");
+                gifImage.addClass("gif")
                 // Appending the paragraph and image tag to the animalDiv
                 gifDiv.append(p);
                 gifDiv.append(gifImage);
@@ -68,6 +71,20 @@ $(".tag").on("click", function () {
                 $("#gifs").append(gifDiv);
 
             };
+            $(".gif").on("click", function() {
+                // The attr jQuery method allows us to get or set the value of any attribute on our HTML element
+                var state = $(this).attr("data-state");
+                // If the clicked image's state is still, update its src attribute to what its data-animate value is.
+                // Then, set the image's data-state to animate
+                // Else set src to the data-still value
+                if (state === "still") {
+                  $(this).attr("src", $(this).attr("data-animate"));
+                  $(this).attr("data-state", "animate");
+                } else {
+                  $(this).attr("src", $(this).attr("data-still"));
+                  $(this).attr("data-state", "still");
+                }
+              });
 
         });
 
@@ -88,6 +105,7 @@ $("#add").on("click", function (event) {
     renderButtons();
 
 });
+
 
 
 
